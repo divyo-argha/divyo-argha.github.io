@@ -7,26 +7,22 @@ import styles from "./ThemeToggle.module.css";
 
 type Theme = "light" | "dark";
 
-function getSystemTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
     // Deferred a tick rather than set synchronously: the pre-hydration script
     // already painted the right theme via CSS, this only syncs the icon.
+    // Falls back to "light", never system preference — dark is opt-in only.
     const timeout = setTimeout(() => {
       const current = document.documentElement.getAttribute("data-theme") as Theme | null;
-      setTheme(current ?? getSystemTheme());
+      setTheme(current ?? "light");
     }, 0);
     return () => clearTimeout(timeout);
   }, []);
 
   function toggle() {
-    const next: Theme = (theme ?? getSystemTheme()) === "dark" ? "light" : "dark";
+    const next: Theme = (theme ?? "light") === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
     try {

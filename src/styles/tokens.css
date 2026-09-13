@@ -103,27 +103,11 @@
   color-scheme: dark;
 }
 
-/* System preference, unless the user has explicitly chosen light */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ground: #0d0f0e;
-    --surface: #171a19;
-    --raised: #1f2321;
-    --ink: #e9ebe8;
-    --muted: #9aa29e;
-    --line: #2a2f2c;
-    --accent: #55d6b0;
-    --accent-ink: #0d0f0e;
-    --accent-soft: #12312a;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-    --shadow-card-hover: 0 14px 34px rgba(0, 0, 0, 0.45);
-    --shadow-drop: 0 14px 28px rgba(0, 0, 0, 0.5);
-
-    color-scheme: dark;
-  }
-}
+/* Deliberately no `@media (prefers-color-scheme: dark)` block: the academic
+   look this site wants is light by default for every reader, regardless of
+   OS setting. Dark only ever comes from an explicit `data-theme="dark"` —
+   set by ThemeToggle's manual toggle, or by CyquredThemeScope on the game
+   microsite — never inferred from system preference. */
 
 /* Printing always uses the light palette, regardless of the active theme —
    saves ink and reads better on paper. Matches the specificity of the dark

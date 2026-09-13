@@ -57,14 +57,8 @@ export function MagneticBackground() {
     let isDark = false;
 
     function detectTheme() {
-      const explicit = document.documentElement.getAttribute("data-theme");
-      if (explicit === "dark") {
-        isDark = true;
-      } else if (explicit === "light") {
-        isDark = false;
-      } else {
-        isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      }
+      // No system-preference fallback: dark only when explicitly toggled on.
+      isDark = document.documentElement.getAttribute("data-theme") === "dark";
     }
 
     detectTheme();
@@ -78,13 +72,6 @@ export function MagneticBackground() {
       attributes: true,
       attributeFilter: ["data-theme"],
     });
-
-    const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleSchemeChange = () => {
-      detectTheme();
-      wake();
-    };
-    colorSchemeQuery.addEventListener("change", handleSchemeChange);
 
     function initGrid() {
       if (!canvas) return;
@@ -139,7 +126,6 @@ export function MagneticBackground() {
       drawStatic();
       return () => {
         themeObserver.disconnect();
-        colorSchemeQuery.removeEventListener("change", handleSchemeChange);
       };
     }
 
@@ -361,7 +347,6 @@ export function MagneticBackground() {
       cancelAnimationFrame(animId);
       clearTimeout(resizeTimer);
       themeObserver.disconnect();
-      colorSchemeQuery.removeEventListener("change", handleSchemeChange);
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("mouseleave", handlePointerLeave);

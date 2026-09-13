@@ -40,14 +40,6 @@
   --accent-soft: #123138;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .brandScope {
-    --accent: #5ee1f2;
-    --accent-ink: #06232a;
-    --accent-soft: #123138;
-  }
-}
-
 .brandScope :global(h3),
 .brandScope :global(h4) {
   letter-spacing: 0;
