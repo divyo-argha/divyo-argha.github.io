@@ -25,6 +25,7 @@ export function generateMetadata(): Metadata {
   return {
     title: detail.title,
     description: detail.eyebrow,
+    alternates: { canonical: "/publications/cyqured/" },
   };
 }
 

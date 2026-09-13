@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   // back to the site-wide "· Argha Saha" suffix.
   title: { absolute: "The Game · CyQured" },
   description: "A tabletop cybersecurity game for the connected home: browse the playable cards and board, walk through the mechanics, or read the SOUPS 2026 research publication.",
+  alternates: { canonical: "/cyqured/" },
 };
 
 const SECTIONS = [

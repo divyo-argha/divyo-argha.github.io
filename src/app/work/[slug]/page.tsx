@@ -19,6 +19,7 @@ export async function generateMetadata({
   return {
     title: detail.title,
     description: detail.eyebrow,
+    alternates: { canonical: `/work/${slug}/` },
   };
 }
 

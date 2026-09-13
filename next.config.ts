@@ -2,14 +2,19 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
-  // Deployed on Vercel as a fully static export: the site has no server-rendered
-  // or revalidated routes, so a static build is the simplest thing that works and
-  // stays portable to any static host. Trade-off: `export` also switches off
-  // Vercel's on-demand image optimization, so every image in `public/` is served
-  // exactly as committed — which is why they are pre-encoded to WebP at their real
-  // display sizes rather than left as source PNGs. Cache headers for those live in
-  // `vercel.json`, since Vercel serves `public/` with `max-age=0` by default.
+  // Deployed on GitHub Pages as a fully static export: the site has no
+  // server-rendered or revalidated routes, so a static build is the simplest
+  // thing that works. Trade-off: `export` also rules out on-demand image
+  // optimization, so every image in `public/` is served exactly as
+  // committed — which is why they are pre-encoded to WebP at their real
+  // display sizes rather than left as source PNGs.
   output: "export",
+  // Without this, `export` emits flat files (`/cyqured.html`). Vercel rewrites
+  // extensionless requests to a matching `.html` file automatically; GitHub
+  // Pages' static server does not, so every route but the homepage would
+  // 404 there. `trailingSlash` makes export emit `/cyqured/index.html`
+  // instead, which both hosts serve correctly.
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
