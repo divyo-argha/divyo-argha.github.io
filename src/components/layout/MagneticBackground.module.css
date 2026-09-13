@@ -23,8 +23,8 @@
   opacity: 0;
   transition: opacity var(--duration-base) var(--ease-out);
   background: radial-gradient(
-    440px circle at var(--mx, 50%) var(--my, 33%),
-    color-mix(in srgb, var(--accent) 12%, transparent),
+    320px circle at var(--mx, 50%) var(--my, 33%),
+    color-mix(in srgb, var(--accent) 6%, transparent),
     transparent 70%
   );
 }

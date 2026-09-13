@@ -26,10 +26,10 @@ interface PulseWave {
 }
 
 const PITCH = 34; // Spacing between lattice points in CSS pixels
-const MAGNETIC_RADIUS = 150; // Gentle repulsion radius around cursor
-const REPULSION_FORCE = 11; // Soft, fluid repulsive acceleration
-const SPRING_K = 0.065; // Organic restitution constant
-const DAMPING = 0.88; // Gentle friction damping factor
+const MAGNETIC_RADIUS = 90; // Gentle repulsion radius around cursor
+const REPULSION_FORCE = 3.5; // Soft, fluid repulsive acceleration
+const SPRING_K = 0.08; // Stiffer restitution — snaps back before travelling far
+const DAMPING = 0.85; // Friction damping factor — settles faster, less lingering scatter
 
 export function MagneticBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -183,9 +183,9 @@ export function MagneticBackground() {
         x: e.clientX,
         y: e.clientY,
         radius: 0,
-        maxRadius: Math.min(window.innerWidth, window.innerHeight) * 0.28,
+        maxRadius: Math.min(window.innerWidth, window.innerHeight) * 0.12,
         speed: 5.5,
-        strength: 7,
+        strength: 2,
       });
       wake();
     }
@@ -303,8 +303,8 @@ export function MagneticBackground() {
         } else {
           // Displaced dot: responsive, luminous accent shift
           const t = Math.min(1, p.disp / 16);
-          const radius = 1.35 + t * 0.55;
-          const alpha = isDark ? 0.25 + t * 0.38 : 0.22 + t * 0.33;
+          const radius = 1.35 + t * 0.3;
+          const alpha = isDark ? 0.22 + t * 0.2 : 0.2 + t * 0.16;
 
           ctx.fillStyle = `rgba(${activeDotR}, ${activeDotG}, ${activeDotB}, ${alpha.toFixed(3)})`;
           ctx.beginPath();
