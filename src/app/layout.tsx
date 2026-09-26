@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/layout/BackToTop";
 import { themeInitScript } from "@/lib/theme";
 import { siteConfig } from "@/lib/site";
-import { personJsonLd } from "@/lib/jsonld";
+import { rootGraphJsonLd } from "@/lib/jsonld";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -36,29 +36,40 @@ const code = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  // Short form in the tab strip, where horizontal room is scarce; the full
-  // name is kept for Open Graph below, which is where it actually gets read.
   title: {
-    default: "Argha Saha",
-    template: "%s · Argha Saha",
+    default: siteConfig.title,
+    template: "%s · Argha Pratim Saha",
   },
-  description:
-    "Argha Pratim Saha. Research in usable security and privacy, security education, and qualitative HCI. Applying for PhD positions.",
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "Academic Research & Technology",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   // No `icons` block: src/app/{favicon.ico,icon.svg,icon.png,apple-icon.png}
   // are file-convention routes and Next emits the full link set from them.
   // Declaring `icons.icon` here replaced that set wholesale, which silently
   // dropped the apple-touch-icon link along with it.
   openGraph: {
-    title: "Argha Pratim Saha",
-    description: "Research in usable security & privacy, security education, and qualitative HCI.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     url: siteConfig.url,
-    siteName: "Argha Pratim Saha",
+    siteName: siteConfig.name,
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Argha Pratim Saha",
-    description: "Research in usable security & privacy, security education, and qualitative HCI.",
+    title: siteConfig.title,
+    description: siteConfig.description,
   },
   robots: {
     index: siteConfig.indexable,
@@ -66,7 +77,13 @@ export const metadata: Metadata = {
     googleBot: {
       index: siteConfig.indexable,
       follow: siteConfig.indexable,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
+  },
+  verification: {
+    google: siteConfig.googleSiteVerification || undefined,
   },
 };
 
@@ -82,7 +99,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootGraphJsonLd()) }}
         />
       </head>
       <body>

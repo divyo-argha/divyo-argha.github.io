@@ -4,6 +4,7 @@ import { DetailLayout } from "@/components/detail/DetailLayout";
 import { getPublicationDetail, publicationSlugs } from "@/lib/detail";
 import { publications } from "@/content/publications";
 import { scholarlyArticleJsonLd } from "@/lib/jsonld";
+import { getPublicationMetadata } from "@/lib/publicationSeo";
 
 export function generateStaticParams() {
   // "cyqured" has its own literal route at app/publications/cyqured/page.tsx
@@ -19,14 +20,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const detail = getPublicationDetail(slug);
-  if (!detail) return {};
+  const publication = publications.find((p) => p.slug === slug);
+  if (!publication) return {};
 
-  return {
-    title: detail.title,
-    description: detail.eyebrow,
-    alternates: { canonical: `/publications/${slug}/` },
-  };
+  return getPublicationMetadata(publication, `/publications/${slug}/`);
 }
 
 export default async function PublicationPage({ params }: { params: Promise<{ slug: string }> }) {

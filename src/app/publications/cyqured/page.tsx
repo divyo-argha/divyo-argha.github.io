@@ -8,6 +8,7 @@ import { Hero } from "@/components/cyqured/Hero";
 import { getPublicationDetail } from "@/lib/detail";
 import { publications } from "@/content/publications";
 import { scholarlyArticleJsonLd } from "@/lib/jsonld";
+import { getPublicationMetadata } from "@/lib/publicationSeo";
 import { IconArrowUpRight } from "@/components/primitives/Icons";
 import { overviewBlocks, howToPlayBlocks, studyBlocks } from "./content";
 import styles from "./cyqured.module.css";
@@ -20,13 +21,9 @@ const display = Chakra_Petch({
 });
 
 export function generateMetadata(): Metadata {
-  const detail = getPublicationDetail("cyqured");
-  if (!detail) return {};
-  return {
-    title: detail.title,
-    description: detail.eyebrow,
-    alternates: { canonical: "/publications/cyqured/" },
-  };
+  const publication = publications.find((p) => p.slug === "cyqured");
+  if (!publication) return {};
+  return getPublicationMetadata(publication, "/publications/cyqured/");
 }
 
 export default function CyQuredPage() {

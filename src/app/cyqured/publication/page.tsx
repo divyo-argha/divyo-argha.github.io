@@ -6,6 +6,9 @@ import { IconArrowUpRight } from "@/components/primitives/Icons";
 import styles from "../game.module.css";
 import pubStyles from "./publication.module.css";
 
+import { publications } from "@/content/publications";
+import { scholarlyArticleJsonLd } from "@/lib/jsonld";
+
 const display = Chakra_Petch({
   variable: "--font-cyq-display",
   subsets: ["latin"],
@@ -15,8 +18,32 @@ const display = Chakra_Petch({
 
 export const metadata: Metadata = {
   title: "SOUPS 2026 Research Publication",
-  description: "Download the scientific manuscript and explore the empirical study on CyQured accepted at USENIX SOUPS 2026.",
+  description:
+    "Download the scientific manuscript and explore the empirical study on CyQured accepted at USENIX SOUPS 2026.",
   alternates: { canonical: "/cyqured/publication/" },
+  openGraph: {
+    title: "CyQured · SOUPS 2026 Research Publication",
+    description:
+      "Design, Development, and Empirical Evaluation of a Tabletop Game for Personal Cybersecurity Education. Published at USENIX SOUPS 2026.",
+    url: "https://divyo-argha.github.io/cyqured/publication/",
+    type: "article",
+  },
+  other: {
+    citation_title:
+      "CyQured: Design, Development, and Empirical Evaluation of a Tabletop Game for Personal Cybersecurity Education",
+    citation_publication_date: "2026",
+    citation_conference_title:
+      "Twenty-Second Symposium on Usable Privacy and Security (SOUPS 2026)",
+    citation_pdf_url: "https://www.usenix.org/system/files/soups2026-das.pdf",
+    citation_isbn: "978-1-939133-59-5",
+    citation_author: [
+      "Utsho Das",
+      "Argha Pratim Saha",
+      "Md Sadek Ferdous",
+      "Md Masum",
+      "Farida Chowdhury",
+    ],
+  },
 };
 
 const BIBTEX = `@inproceedings {325790,
@@ -32,8 +59,18 @@ month = aug
 };`;
 
 export default function CyQuredPublicationPage() {
+  const cyquredPub = publications.find((p) => p.slug === "cyqured");
+
   return (
     <div className={`${display.variable} ${styles.page}`}>
+      {cyquredPub && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(scholarlyArticleJsonLd(cyquredPub)),
+          }}
+        />
+      )}
       <div className={styles.grain} aria-hidden="true" />
       <div className={styles.glowA} aria-hidden="true" />
       <div className={styles.glowB} aria-hidden="true" />
