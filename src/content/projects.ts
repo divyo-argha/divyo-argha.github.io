@@ -11,8 +11,8 @@ export const projects: Project[] = [
     featured: true,
     installCommand: "npm install -g git-userhub",
     stats: [
-      { label: "npm downloads / mo", value: "4,552" },
-      { label: "npm downloads / 2026", value: "11,877" },
+      { label: "npm downloads / mo", value: "1,722" },
+      { label: "total npm downloads", value: "13,510" },
     ],
     links: [
       { label: "GitHub", href: "https://github.com/divyo-argha/git-user" },

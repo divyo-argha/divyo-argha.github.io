@@ -8,7 +8,7 @@ export const projectDetails: Record<string, Block[]> = {
       body: [
         "Working across research and industry projects means juggling several Git identities: a university email for thesis work, a work account for ShellBeeHaken, a personal account for open source. git-user makes switching between them a single command instead of a round of gitconfig editing.",
         "It manages passphrase-encrypted SSH keys per identity, applies gitconfig overrides scoped to a directory, supports commit signing, and installs a pre-commit hook that verifies the active identity matches the intended one before a commit lands. That catches the \"pushed to the wrong account\" mistake before it happens.",
-        "Published on npm as git-userhub, it has sustained real, ongoing adoption: 4,555 downloads in the last month alone and 9,795 across 2026 to date.",
+        "Published on npm as git-userhub, it has sustained real, ongoing adoption: 1,722 downloads in the last month alone and 13,510 total downloads to date.",
       ],
     },
     {
@@ -16,8 +16,8 @@ export const projectDetails: Record<string, Block[]> = {
       items: [
         { label: "Language", value: "Go 1.25+" },
         { label: "Distribution", value: "npm (git-userhub)" },
-        { label: "Downloads / month", value: "4,555" },
-        { label: "Downloads / 2026", value: "9,795" },
+        { label: "Downloads / month", value: "1,722" },
+        { label: "Total downloads", value: "13,510" },
       ],
     },
     { kind: "code", language: "bash", body: "npm install -g git-userhub" },
