@@ -124,7 +124,7 @@ export function MobileNav({
         <div className={styles.panelHeader}>
           <div className={styles.profile}>
             <div className={styles.avatarWrap}>
-              <Portrait src="/media/people/portrait.webp" alt="Argha Pratim Saha" />
+              <Portrait src="/media/people/portrait.webp" alt="Argha Pratim Saha (Divyo Argha / Argha Saha)" />
             </div>
             <div className={styles.profileInfo}>
               <span className={styles.name}>{profile.name}</span>

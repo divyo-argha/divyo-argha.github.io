@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   keywords: [
     "CyQured",
     "cyqured",
+    "cyqured soups",
+    "soups26",
+    "soups 2026",
+    "SOUPS26",
+    "USENIX SOUPS 2026",
     "CyQured Game",
     "CyQured board game",
     "CyQured tabletop game",
@@ -30,6 +35,9 @@ export const metadata: Metadata = {
     "STRIDE board game",
     "smart home cybersecurity game",
     "Argha Pratim Saha",
+    "Divyo Argha",
+    "Argha Saha",
+    "divyo-argha",
     "Utsho Das",
   ],
   alternates: { canonical: "/cyqured/" },
@@ -40,21 +48,12 @@ export const metadata: Metadata = {
     url: "https://divyo-argha.github.io/cyqured/",
     siteName: "CyQured",
     type: "website",
-    images: [
-      {
-        url: "https://divyo-argha.github.io/media/publications/cyqured/board.webp",
-        width: 900,
-        height: 1155,
-        alt: "CyQured Board Game Layout",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "CyQured · The Personal Cybersecurity Board Game (Official Website)",
     description:
       "A tabletop cybersecurity game for the connected home: browse the playable cards and board, walk through the mechanics, or read the USENIX SOUPS 2026 research study.",
-    images: ["https://divyo-argha.github.io/media/publications/cyqured/board.webp"],
   },
 };
 
@@ -101,7 +100,7 @@ export default function CyQuredGameHomePage() {
         {/* Hero Section */}
         <header className={styles.hero}>
           <h1 className="visually-hidden">
-            CyQured: Personal Cybersecurity Education Tabletop Game (Official Website)
+            CyQured: Personal Cybersecurity Education Tabletop Game — USENIX SOUPS 2026 (SOUPS26) Official Website
           </h1>
           <p className={styles.eyebrow}>Physical Track &amp; Playable Decks</p>
           <Hero />

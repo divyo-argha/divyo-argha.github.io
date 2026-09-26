@@ -78,7 +78,7 @@ function HeroLogoLockup() {
             and let the CSS width override the rendered size. */}
         <Image
           src="/media/publications/cyqured/cyqured-logo.webp"
-          alt="CyQured"
+          alt="CyQured: Personal Cybersecurity Education Tabletop Game (USENIX SOUPS 2026)"
           width={632}
           height={225}
           className={styles.logo}

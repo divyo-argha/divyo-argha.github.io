@@ -14,28 +14,35 @@ export const metadata: Metadata = {
   keywords: [
     "CyQured",
     "cyqured",
+    "cyqured soups",
+    "soups26",
+    "soups 2026",
+    "SOUPS26",
+    "USENIX SOUPS 2026",
     "Cybersecurity Game",
     "Tabletop Security Game",
-    "SOUPS 2026",
     "STRIDE Threat Modeling",
     "Personal Cybersecurity Education",
     "Smart Home Security",
     "Argha Pratim Saha",
+    "Divyo Argha",
+    "Argha Saha",
+    "divyo-argha",
     "Utsho Das",
   ],
   openGraph: {
-    title: "CyQured · Personal Cybersecurity Education Tabletop Game",
+    title: "CyQured · Personal Cybersecurity Education Tabletop Game (USENIX SOUPS 2026)",
     description:
-      "Explore the physical board, 84 playable cards, STRIDE mechanics, and SOUPS 2026 empirical study.",
+      "Explore the physical board, 84 playable cards, STRIDE mechanics, and USENIX SOUPS 2026 (SOUPS26) empirical study by Argha Pratim Saha (Divyo Argha / Argha Saha) and Utsho Das.",
     url: "https://divyo-argha.github.io/cyqured/",
     siteName: "CyQured",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CyQured · Personal Cybersecurity Education Tabletop Game",
+    title: "CyQured · Personal Cybersecurity Education Tabletop Game (USENIX SOUPS 2026)",
     description:
-      "Explore the physical board, 84 playable cards, STRIDE mechanics, and SOUPS 2026 empirical study.",
+      "Explore the physical board, 84 playable cards, STRIDE mechanics, and USENIX SOUPS 2026 (SOUPS26) empirical study by Argha Pratim Saha (Divyo Argha / Argha Saha) and Utsho Das.",
   },
 };
 

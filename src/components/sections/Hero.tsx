@@ -36,7 +36,7 @@ export function Hero() {
         {/* Mobile profile introduction (< 1040px) */}
         <div className={styles.mobileProfileHeader}>
           <div className={styles.mobilePortraitWrap}>
-            <Portrait src="/media/people/portrait.webp" alt="Argha Pratim Saha" priority />
+            <Portrait src="/media/people/portrait.webp" alt="Argha Pratim Saha (Divyo Argha / Argha Saha)" priority />
           </div>
 
           <div className={styles.mobileProfileMeta}>

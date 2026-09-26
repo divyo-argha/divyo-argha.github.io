@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { DetailLayout } from "@/components/detail/DetailLayout";
 import { getPublicationDetail, publicationSlugs } from "@/lib/detail";
 import { publications } from "@/content/publications";
-import { scholarlyArticleJsonLd } from "@/lib/jsonld";
+import { scholarlyArticleJsonLd, breadcrumbsJsonLd } from "@/lib/jsonld";
 import { getPublicationMetadata } from "@/lib/publicationSeo";
 
 export function generateStaticParams() {
@@ -32,11 +32,21 @@ export default async function PublicationPage({ params }: { params: Promise<{ sl
   const publication = publications.find((p) => p.slug === slug);
   if (!detail || !publication) notFound();
 
+  const breadcrumbs = breadcrumbsJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Research", path: "/#research" },
+    { name: publication.title, path: `/publications/${slug}/` },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarlyArticleJsonLd(publication)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
       <DetailLayout detail={detail} />
     </>

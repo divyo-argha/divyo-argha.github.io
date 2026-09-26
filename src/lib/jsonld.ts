@@ -43,6 +43,20 @@ export function personJsonLd() {
       "Qualitative HCI",
       "Bengali NLP",
     ],
+    disambiguatingDescription:
+      "Human-Centered Security and Privacy researcher, co-author of CyQured at USENIX SOUPS 2026, also known as Divyo Argha and Argha Saha.",
+    gender: "https://schema.org/Male",
+    nationality: {
+      "@type": "Country",
+      name: "Bangladesh",
+    },
+    subjectOf: [
+      {
+        "@type": "ScholarlyArticle",
+        name: "CyQured: Design, Development, and Empirical Evaluation of a Tabletop Game for Personal Cybersecurity Education",
+        url: `${siteConfig.url}/publications/cyqured/`,
+      },
+    ],
     sameAs: socialLinks
       .filter((l) => l.href.startsWith("http"))
       .map((l) => l.href),
@@ -56,7 +70,7 @@ export function websiteJsonLd() {
     "@id": `${siteConfig.url}/#website`,
     url: `${siteConfig.url}/`,
     name: siteConfig.name,
-    alternateName: "Argha Saha",
+    alternateName: siteConfig.alternateNames,
     description: siteConfig.description,
     author: {
       "@id": `${siteConfig.url}/#person`,
@@ -227,7 +241,9 @@ export function cyquredGameJsonLd() {
     author: [
       {
         "@type": "Person",
+        "@id": `${siteConfig.url}/#person`,
         name: "Argha Pratim Saha",
+        alternateName: ["Divyo Argha", "Argha Saha", "divyo-argha"],
         url: `${siteConfig.url}/`,
       },
       {

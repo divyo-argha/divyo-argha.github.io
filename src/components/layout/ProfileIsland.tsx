@@ -46,7 +46,7 @@ export function ProfileIsland() {
     <aside className={styles.island} aria-label="Profile and navigation">
       <div className={styles.card}>
         <div className={styles.portraitWrap}>
-          <Portrait src="/media/people/portrait.webp" alt="Argha Pratim Saha" priority />
+          <Portrait src="/media/people/portrait.webp" alt="Argha Pratim Saha (Divyo Argha / Argha Saha)" priority />
         </div>
 
         {/* Not an <h1> — the page's one heading lives in Hero.tsx (visually

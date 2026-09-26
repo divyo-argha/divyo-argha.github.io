@@ -4,7 +4,7 @@ import { DetailLayout } from "@/components/detail/DetailLayout";
 import { getProjectDetail, projectSlugs } from "@/lib/detail";
 
 import { projects } from "@/content/projects";
-import { softwareApplicationJsonLd } from "@/lib/jsonld";
+import { softwareApplicationJsonLd, breadcrumbsJsonLd } from "@/lib/jsonld";
 import { siteConfig } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -23,7 +23,15 @@ export async function generateMetadata({
   return {
     title: `${project.name} · Projects`,
     description: project.description,
-    keywords: [project.name, ...project.stack, "Argha Pratim Saha", "open source project"],
+    keywords: [
+      project.name,
+      ...project.stack,
+      "Argha Pratim Saha",
+      "Divyo Argha",
+      "Argha Saha",
+      "divyo-argha",
+      "open source project",
+    ],
     alternates: { canonical: `/work/${slug}/` },
     openGraph: {
       title: `${project.name} — ${project.tagline}`,
@@ -45,12 +53,24 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const project = projects.find((p) => p.slug === slug);
   if (!detail || !project) notFound();
 
+  const breadcrumbs = breadcrumbsJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/#projects" },
+    { name: project.name, path: `/work/${slug}/` },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(softwareApplicationJsonLd(project)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbs),
         }}
       />
       <DetailLayout detail={detail} />
