@@ -155,6 +155,16 @@ export function scholarlyArticleJsonLd(publication: Publication) {
       "@type": "Organization",
       name: publication.venueShort,
     },
+    ...(publication.slug === "cyqured"
+      ? {
+          about: {
+            "@type": "Game",
+            "@id": `${siteConfig.url}/cyqured/#game`,
+            name: "CyQured",
+            url: `${siteConfig.url}/cyqured/`,
+          },
+        }
+      : {}),
     ...(publication.doi ? { identifier: `https://doi.org/${publication.doi}` } : {}),
     ...(absolutePdfUrl
       ? {
@@ -278,6 +288,19 @@ export function cyquredGameJsonLd() {
     sameAs: [
       "https://www.usenix.org/conference/soups2026/presentation/das",
       "https://www.usenix.org/system/files/soups2026-das.pdf",
+    ],
+    subjectOf: [
+      {
+        "@type": "ScholarlyArticle",
+        "@id": `${siteConfig.url}/publications/cyqured/#article`,
+        name: "CyQured: Design, Development, and Empirical Evaluation of a Tabletop Game for Personal Cybersecurity Education",
+        url: `${siteConfig.url}/publications/cyqured/`,
+        isPartOf: {
+          "@type": "PublicationVolume",
+          name: "Twenty-Second Symposium on Usable Privacy and Security (SOUPS 2026)",
+          alternateName: ["SOUPS 2026", "SOUPS26", "USENIX SOUPS 2026"],
+        },
+      },
     ],
   };
 }

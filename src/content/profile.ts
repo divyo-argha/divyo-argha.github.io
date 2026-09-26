@@ -44,7 +44,7 @@ export const news: NewsItem[] = [
     title: "Paper Published at USENIX SOUPS 2026",
     description:
       "Our paper 'CyQured: Design, Development, and Empirical Evaluation of a Tabletop Game for Personal Cybersecurity Education' was published at the 22nd USENIX Symposium on Usable Privacy and Security in Hanover, Germany.",
-    link: { label: "CyQured Write-up", href: "/publications/cyqured" },
+    link: { label: "CyQured SOUPS 2026 Paper", href: "/publications/cyqured" },
     secondaryLink: { label: "Paper (PDF)", href: "https://www.usenix.org/system/files/soups2026-das.pdf" },
   },
   {

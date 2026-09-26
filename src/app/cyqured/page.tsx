@@ -15,9 +15,9 @@ const display = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: { absolute: "CyQured · Official Website | Personal Cybersecurity Board Game" },
+  title: { absolute: "CyQured · Personal Cybersecurity Board Game | USENIX SOUPS 2026" },
   description:
-    "The official website of CyQured: a tabletop serious game for personal cybersecurity education in connected homes. Browse the 28-cell board, 84 playable cards, game rules, and SOUPS 2026 research publication.",
+    "The official website of CyQured: a tabletop serious board game for personal cybersecurity education, published at USENIX SOUPS 2026 (SOUPS26). Browse the 28-cell board, 84 playable cards, game rules, and empirical study.",
   keywords: [
     "CyQured",
     "cyqured",
@@ -130,7 +130,7 @@ export default function CyQuredGameHomePage() {
               </p>
             </div>
             <Link href="/publications/cyqured" className={styles.bridgeButton}>
-              <span>Research Overview</span>
+              <span>CyQured SOUPS 2026 Paper</span>
               <IconArrowUpRight size={16} />
             </Link>
           </div>

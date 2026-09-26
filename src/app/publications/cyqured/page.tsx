@@ -96,8 +96,8 @@ export default function CyQuredPage() {
               >
                 <span className={styles.cornerPulse} />
                 <span className={styles.cornerText}>
-                  <span className={styles.cornerEyebrow}>Interactive Game Details</span>
-                  <span className={styles.cornerLabel}>Explore the Game & Rules</span>
+                  <span className={styles.cornerEyebrow}>Official Microsite</span>
+                  <span className={styles.cornerLabel}>Explore CyQured Game Website</span>
                 </span>
                 <span className={styles.cornerArrow}>
                   <IconArrowUpRight size={18} />

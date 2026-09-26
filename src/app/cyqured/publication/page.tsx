@@ -223,7 +223,7 @@ export default function CyQuredPublicationPage() {
               </p>
             </div>
             <Link href="/publications/cyqured" className={pubStyles.overviewCtaButton}>
-              <span>Visit /publications/cyqured</span>
+              <span>CyQured SOUPS 2026 Interactive Study</span>
               <IconArrowUpRight size={16} />
             </Link>
           </div>

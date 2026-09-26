@@ -62,7 +62,7 @@ export const publications: Publication[] = [
     scholarUrl:
       "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=EKrGm9UAAAAJ&citation_for_view=EKrGm9UAAAAJ:zYLM7Y9cAGgC",
     links: [
-      { label: "CyQured Game Microsite", href: "/cyqured" },
+      { label: "CyQured Official Game (SOUPS 2026)", href: "/cyqured" },
       { label: "Read the paper", href: "https://www.usenix.org/system/files/soups2026-das.pdf" },
       { label: "USENIX presentation", href: "https://www.usenix.org/conference/soups2026/presentation/das" },
     ],
