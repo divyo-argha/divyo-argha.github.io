@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 /**
  * Enforces dark theme on the document root whenever the user is browsing
- * the CyQured game microsite (/publications/cyqured/game and all subroutes).
+ * the CyQured game microsite (/cyqured and all subroutes).
  * Restores the previous user theme when unmounting back to the portfolio.
  */
 export function CyquredThemeScope() {
