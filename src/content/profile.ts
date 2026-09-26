@@ -3,28 +3,21 @@ import type { Link, NewsItem } from "./types";
 export const profile = {
   name: "Argha Pratim Saha",
   subtitle: "Researcher in Human-Centered Security & Privacy",
-  /** The breadth line: kept separate from `subtitle` so the hero states one
-   * coherent identity first, then the adjacent areas it connects to — rather
-   * than opening with a list of topic tags. */
   focusLine: "Usable security & privacy · Human-computer interaction · AI & IoT Security",
   status: "PhD applicant · Fall 2027",
-  /** The three structured paragraphs for the About Me narrative. */
   bioParagraphs: [
-    "I am a human-centered security and privacy researcher investigating how everyday people perceive, encounter, and defend against deceptive digital threats. My work focuses on non-traditional and vulnerable user populations whose digital lives were never designed around them—particularly those navigating shared devices, varying literacy levels, or constrained institutional protections.",
-    "Bridging usable security, human-computer interaction, and applied machine learning, I design tangible educational interventions and evaluate them through rigorous empirical and qualitative field methods. Most recently, I led the creation and empirical evaluation of CyQured, a physical tabletop security game published at USENIX SOUPS 2026, demonstrating how collaborative gameplay can demystify defensive decision-making. My broader background also includes published research in clinical natural language processing at NAACL 2024 and diagnostic deep learning at IEEE ICCIT 2024.",
-    "Currently, I conduct research as an RA at BRAC University's Human-Centered Computing and Society (HCCS) group and engineer conversational agent systems at ShellBeeHaken. Looking ahead, I am actively preparing for PhD applications (Fall 2027), where I aim to investigate human-AI security, privacy-preserving interfaces, and algorithmic trust in high-stakes environments.",
+    "I'm a Computer Science graduate from Shahjalal University of Science and Technology, Bangladesh. I'm interested in usable security and privacy, specifically why people misunderstand the tools meant to protect them, and how that plays out for people sharing devices, working through confusing interfaces, or facing scams with no one to ask.",
+    "My recent work includes CyQured, a tabletop game I built and tested for teaching personal cybersecurity, and an ongoing study with BRAC University's Human-Centered Computing and Society group on how young adults in Bangladesh read phishing and smishing attempts. I'm currently a software engineer at ShellBeeHaken, building the Bengali-English code-switching layer for a real-time voice agent, and I have a background in applied machine learning that includes clinical NLP and diagnostic imaging.",
   ],
-  bio: "I am a human-centered security and privacy researcher investigating how everyday people perceive, encounter, and defend against deceptive digital threats. My work focuses on non-traditional and vulnerable user populations whose digital lives were never designed around them—particularly those navigating shared devices, varying literacy levels, or constrained institutional protections. Bridging usable security, human-computer interaction, and applied machine learning, I design tangible educational interventions and evaluate them through rigorous empirical and qualitative field methods. Most recently, I led the creation and empirical evaluation of CyQured, a physical tabletop security game published at USENIX SOUPS 2026.",
+  closingStatement:
+    "What pulls me toward a PhD is a simple question: most security failures aren't really about carelessness, they're about systems built for a user who doesn't actually exist. I want to spend the next few years figuring out what it would take to close that gap.",
+  bio: "I'm a Computer Science graduate interested in usable security and privacy, specifically why people misunderstand the tools meant to protect them. I build things people can use, including a tabletop security game and studies of phishing perception, and test them with real users.",
   location: "Dhaka, Bangladesh",
   email: "arghapratimsaha00@gmail.com",
   university: "Shahjalal University of Science and Technology (SUST)",
   cvUrl: "/cv.pdf",
 } as const;
 
-/** What ties the work together and where it's headed next, as one short
- * paragraph rather than a philosophy statement plus a list of future-work
- * bullets — `ResearchFocus.tsx` used to split those apart into two full
- * sections; merged back into one on request, kept deliberately brief. */
 export const researchFocus = {
   note: "The thread through my work is security and privacy for people systems were never really built around: no training, no device of their own, no vocabulary for what happened to them. I build interventions for that group, then test whether they actually hold up. What I want to work on next is human-AI security, how people trust or get fooled by decisions an AI makes for them, a question CyQured pointed me toward but I haven't published on yet.",
   tags: [

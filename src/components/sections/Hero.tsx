@@ -19,7 +19,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 
 export function Hero() {
   const navigateToSection = useSectionNav();
-  const [para1, para2, para3] = profile.bioParagraphs;
+  const [para1, para2] = profile.bioParagraphs;
 
   function handleResearchClick(e: MouseEvent<HTMLAnchorElement>) {
     e.preventDefault();
@@ -89,9 +89,10 @@ export function Hero() {
 
           <div className={styles.rightCol}>
             <p className={styles.statement}>{para2}</p>
-            <p className={styles.statement}>{para3}</p>
           </div>
         </div>
+
+        <p className={styles.closing}>{profile.closingStatement}</p>
       </Section>
     </>
   );

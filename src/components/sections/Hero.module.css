@@ -238,3 +238,15 @@
     transition: none;
   }
 }
+
+.closing {
+  margin-top: var(--space-6);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--accent);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 62ch;
+}
