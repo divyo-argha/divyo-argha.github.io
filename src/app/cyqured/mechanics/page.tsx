@@ -5,6 +5,8 @@ import { MechanicsTabs } from "@/components/cyqured/MechanicsTabs";
 import { IconArrowUpRight } from "@/components/primitives/Icons";
 import styles from "../game.module.css";
 
+import { breadcrumbsJsonLd } from "@/lib/jsonld";
+
 const display = Chakra_Petch({
   variable: "--font-cyq-display",
   subsets: ["latin"],
@@ -13,14 +15,38 @@ const display = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "Game Mechanics",
-  description: "Explore the game mechanics: 4-step turn progression, STRIDE threat taxonomy, device compromise battles, and victory rules.",
+  title: "CyQured Game Mechanics · STRIDE Battles, Turns & Rules",
+  description:
+    "Explore the official CyQured game mechanics: 4-step turn progression, STRIDE threat taxonomy, device compromise battles, and victory rules.",
+  keywords: [
+    "CyQured mechanics",
+    "CyQured rules",
+    "how to play CyQured",
+    "STRIDE threat mechanics",
+    "cybersecurity game rules",
+  ],
   alternates: { canonical: "/cyqured/mechanics/" },
+  openGraph: {
+    title: "CyQured Game Mechanics · STRIDE Battles, Turns & Rules",
+    description:
+      "Explore the official CyQured game mechanics: 4-step turn progression, STRIDE threat taxonomy, device compromise battles, and victory rules.",
+    url: "https://divyo-argha.github.io/cyqured/mechanics/",
+  },
 };
 
 export default function CyQuredMechanicsPage() {
+  const breadcrumbs = breadcrumbsJsonLd([
+    { name: "Home", path: "/" },
+    { name: "CyQured", path: "/cyqured/" },
+    { name: "Game Mechanics", path: "/cyqured/mechanics/" },
+  ]);
+
   return (
     <div className={`${display.variable} ${styles.page}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       <div className={styles.grain} aria-hidden="true" />
       <div className={styles.glowA} aria-hidden="true" />
       <div className={styles.glowB} aria-hidden="true" />

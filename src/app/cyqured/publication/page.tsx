@@ -7,7 +7,7 @@ import styles from "../game.module.css";
 import pubStyles from "./publication.module.css";
 
 import { publications } from "@/content/publications";
-import { scholarlyArticleJsonLd } from "@/lib/jsonld";
+import { scholarlyArticleJsonLd, breadcrumbsJsonLd } from "@/lib/jsonld";
 
 const display = Chakra_Petch({
   variable: "--font-cyq-display",
@@ -17,9 +17,21 @@ const display = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "SOUPS 2026 Research Publication",
+  title: "CyQured Research Publication · SOUPS 2026 (SOUPS26) Manuscript",
   description:
-    "Download the scientific manuscript and explore the empirical study on CyQured accepted at USENIX SOUPS 2026.",
+    "Download the scientific manuscript and explore the empirical study on CyQured accepted at USENIX SOUPS 2026 (SOUPS26).",
+  keywords: [
+    "cyqured soups",
+    "soups26",
+    "soups 2026",
+    "SOUPS26",
+    "CyQured publication",
+    "CyQured paper",
+    "CyQured SOUPS 2026",
+    "CyQured research",
+    "USENIX SOUPS 2026",
+    "cybersecurity education paper",
+  ],
   alternates: { canonical: "/cyqured/publication/" },
   openGraph: {
     title: "CyQured · SOUPS 2026 Research Publication",
@@ -60,6 +72,11 @@ month = aug
 
 export default function CyQuredPublicationPage() {
   const cyquredPub = publications.find((p) => p.slug === "cyqured");
+  const breadcrumbs = breadcrumbsJsonLd([
+    { name: "Home", path: "/" },
+    { name: "CyQured", path: "/cyqured/" },
+    { name: "Publication", path: "/cyqured/publication/" },
+  ]);
 
   return (
     <div className={`${display.variable} ${styles.page}`}>
@@ -71,6 +88,12 @@ export default function CyQuredPublicationPage() {
           }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbs),
+        }}
+      />
       <div className={styles.grain} aria-hidden="true" />
       <div className={styles.glowA} aria-hidden="true" />
       <div className={styles.glowB} aria-hidden="true" />

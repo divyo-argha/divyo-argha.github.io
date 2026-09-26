@@ -7,7 +7,7 @@ import { Tabs } from "@/components/detail/Tabs";
 import { Hero } from "@/components/cyqured/Hero";
 import { getPublicationDetail } from "@/lib/detail";
 import { publications } from "@/content/publications";
-import { scholarlyArticleJsonLd } from "@/lib/jsonld";
+import { scholarlyArticleJsonLd, breadcrumbsJsonLd } from "@/lib/jsonld";
 import { getPublicationMetadata } from "@/lib/publicationSeo";
 import { IconArrowUpRight } from "@/components/primitives/Icons";
 import { overviewBlocks, howToPlayBlocks, studyBlocks } from "./content";
@@ -23,7 +23,44 @@ const display = Chakra_Petch({
 export function generateMetadata(): Metadata {
   const publication = publications.find((p) => p.slug === "cyqured");
   if (!publication) return {};
-  return getPublicationMetadata(publication, "/publications/cyqured/");
+  const baseMeta = getPublicationMetadata(publication, "/publications/cyqured/");
+
+  return {
+    ...baseMeta,
+    title: {
+      absolute: "CyQured · USENIX SOUPS 2026 (SOUPS26) Research Publication",
+    },
+    description:
+      "Official USENIX SOUPS 2026 (SOUPS26) publication: 'CyQured: Design, Development, and Empirical Evaluation of a Tabletop Game for Personal Cybersecurity Education' by Argha Pratim Saha, Utsho Das, et al.",
+    keywords: [
+      "cyqured soups",
+      "soups26",
+      "soups 2026",
+      "SOUPS 2026",
+      "SOUPS26",
+      "USENIX SOUPS 2026",
+      "USENIX SOUPS",
+      "SOUPS '26",
+      "CyQured",
+      "cyqured",
+      "Argha Pratim Saha",
+      "Utsho Das",
+      "personal cybersecurity education",
+      "STRIDE board game",
+    ],
+    openGraph: {
+      ...baseMeta.openGraph,
+      title: "CyQured · USENIX SOUPS 2026 (SOUPS26) Research Publication",
+      description:
+        "Official USENIX SOUPS 2026 (SOUPS26) study on personal cybersecurity education through tabletop gaming.",
+    },
+    twitter: {
+      ...baseMeta.twitter,
+      title: "CyQured · USENIX SOUPS 2026 (SOUPS26) Research Publication",
+      description:
+        "Official USENIX SOUPS 2026 (SOUPS26) study on personal cybersecurity education through tabletop gaming.",
+    },
+  };
 }
 
 export default function CyQuredPage() {
@@ -31,11 +68,21 @@ export default function CyQuredPage() {
   const publication = publications.find((p) => p.slug === "cyqured");
   if (!detail || !publication) return null;
 
+  const breadcrumbs = breadcrumbsJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Publications", path: "/#research" },
+    { name: "CyQured", path: "/publications/cyqured/" },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarlyArticleJsonLd(publication)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
       <DetailLayout
         detail={detail}

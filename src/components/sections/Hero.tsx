@@ -28,7 +28,9 @@ export function Hero() {
 
   return (
     <>
-      <h1 className="visually-hidden">{profile.name}</h1>
+      <h1 className="visually-hidden">
+        Argha Pratim Saha (Divyo Argha / Argha Saha) — Human-Centered Security &amp; Privacy Researcher
+      </h1>
 
       <Section id="top" label="About" title="About Me.">
         {/* Mobile profile introduction (< 1040px) */}

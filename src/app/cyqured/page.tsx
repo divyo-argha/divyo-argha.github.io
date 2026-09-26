@@ -5,6 +5,8 @@ import { Hero } from "@/components/cyqured/Hero";
 import { IconArrowUpRight } from "@/components/primitives/Icons";
 import styles from "./game.module.css";
 
+import { cyquredGameJsonLd, breadcrumbsJsonLd } from "@/lib/jsonld";
+
 const display = Chakra_Petch({
   variable: "--font-cyq-display",
   subsets: ["latin"],
@@ -13,12 +15,47 @@ const display = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  // `absolute` because the section layout's title.template does not apply to a
-  // page in the *same* segment — without it this landing page alone would fall
-  // back to the site-wide "· Argha Saha" suffix.
-  title: { absolute: "The Game · CyQured" },
-  description: "A tabletop cybersecurity game for the connected home: browse the playable cards and board, walk through the mechanics, or read the SOUPS 2026 research publication.",
+  title: { absolute: "CyQured · Official Website | Personal Cybersecurity Board Game" },
+  description:
+    "The official website of CyQured: a tabletop serious game for personal cybersecurity education in connected homes. Browse the 28-cell board, 84 playable cards, game rules, and SOUPS 2026 research publication.",
+  keywords: [
+    "CyQured",
+    "cyqured",
+    "CyQured Game",
+    "CyQured board game",
+    "CyQured tabletop game",
+    "CyQured cybersecurity",
+    "CyQured official",
+    "CyQured SOUPS 2026",
+    "STRIDE board game",
+    "smart home cybersecurity game",
+    "Argha Pratim Saha",
+    "Utsho Das",
+  ],
   alternates: { canonical: "/cyqured/" },
+  openGraph: {
+    title: "CyQured · The Personal Cybersecurity Board Game (Official Website)",
+    description:
+      "A tabletop cybersecurity game for the connected home: browse the playable cards and board, walk through the mechanics, or read the USENIX SOUPS 2026 research study.",
+    url: "https://divyo-argha.github.io/cyqured/",
+    siteName: "CyQured",
+    type: "website",
+    images: [
+      {
+        url: "https://divyo-argha.github.io/media/publications/cyqured/board.webp",
+        width: 900,
+        height: 1155,
+        alt: "CyQured Board Game Layout",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CyQured · The Personal Cybersecurity Board Game (Official Website)",
+    description:
+      "A tabletop cybersecurity game for the connected home: browse the playable cards and board, walk through the mechanics, or read the USENIX SOUPS 2026 research study.",
+    images: ["https://divyo-argha.github.io/media/publications/cyqured/board.webp"],
+  },
 };
 
 const SECTIONS = [
@@ -40,8 +77,21 @@ const SECTIONS = [
 ] as const;
 
 export default function CyQuredGameHomePage() {
+  const breadcrumbs = breadcrumbsJsonLd([
+    { name: "Home", path: "/" },
+    { name: "CyQured", path: "/cyqured/" },
+  ]);
+
   return (
     <div className={`${display.variable} ${styles.page}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cyquredGameJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       <div className={styles.grain} aria-hidden="true" />
       <div className={styles.glowWhite} aria-hidden="true" />
       <div className={styles.glowA} aria-hidden="true" />
@@ -50,8 +100,10 @@ export default function CyQuredGameHomePage() {
       <div className={styles.inner}>
         {/* Hero Section */}
         <header className={styles.hero}>
-          <h1 className="visually-hidden">CyQured: The Game</h1>
-          <p className={styles.eyebrow}>Physical Track & Playable Decks</p>
+          <h1 className="visually-hidden">
+            CyQured: Personal Cybersecurity Education Tabletop Game (Official Website)
+          </h1>
+          <p className={styles.eyebrow}>Physical Track &amp; Playable Decks</p>
           <Hero />
         </header>
 

@@ -11,6 +11,7 @@ export function personJsonLd() {
     alternateName: siteConfig.alternateNames,
     givenName: "Argha Pratim",
     familyName: "Saha",
+    additionalName: "Divyo",
     url: `${siteConfig.url}/`,
     image: `${siteConfig.url}/media/people/argha.jpeg`,
     email: `mailto:${profile.email}`,
@@ -124,10 +125,18 @@ export function scholarlyArticleJsonLd(publication: Publication) {
     isPartOf: {
       "@type": "PublicationVolume",
       name: publication.venue,
-      alternateName: publication.venueShort,
+      alternateName:
+        publication.slug === "cyqured"
+          ? ["SOUPS 2026", "SOUPS26", "SOUPS '26", "USENIX SOUPS 2026"]
+          : publication.venueShort,
     },
     url: `${siteConfig.url}/publications/${publication.slug}/`,
-    keywords: publication.tags.join(", "),
+    keywords: [
+      ...publication.tags,
+      ...(publication.slug === "cyqured"
+        ? ["cyqured soups", "soups26", "soups 2026", "SOUPS26", "USENIX SOUPS 2026"]
+        : []),
+    ].join(", "),
     publisher: {
       "@type": "Organization",
       name: publication.venueShort,
@@ -164,3 +173,117 @@ export function softwareApplicationJsonLd(project: Project) {
     ...(repoLink ? { codeRepository: repoLink } : {}),
   };
 }
+
+export function breadcrumbsJsonLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.path.startsWith("http") ? item.path : `${siteConfig.url}${item.path}`,
+    })),
+  };
+}
+
+export function cyquredGameJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["Game", "LearningResource"],
+    "@id": `${siteConfig.url}/cyqured/#game`,
+    name: "CyQured",
+    alternateName: [
+      "cyQured",
+      "Cyqured",
+      "CyQured Game",
+      "CyQured Board Game",
+      "CyQured Tabletop Game",
+    ],
+    headline: "CyQured: A Tabletop Game for Personal Cybersecurity Education",
+    description:
+      "CyQured is a tangible tabletop serious board game designed to educate people on personal cybersecurity and domestic IoT threat modeling, evaluated in a 50-participant empirical study at USENIX SOUPS 2026.",
+    url: `${siteConfig.url}/cyqured/`,
+    image: `${siteConfig.url}/media/publications/cyqured/board.webp`,
+    genre: [
+      "Cybersecurity",
+      "Educational Game",
+      "Tabletop Game",
+      "Serious Game",
+      "Board Game",
+    ],
+    gameItem: [
+      "28-Cell Smart Home Cyclic Board Track",
+      "16 Connected Domestic Devices",
+      "68 Action Cards (34 Attack, 34 Defense)",
+      "30 Chance Cards",
+      "20 Scenario Incident Challenge Cards",
+    ],
+    numberOfPlayers: {
+      "@type": "QuantitativeValue",
+      minValue: 2,
+      maxValue: 4,
+    },
+    author: [
+      {
+        "@type": "Person",
+        name: "Argha Pratim Saha",
+        url: `${siteConfig.url}/`,
+      },
+      {
+        "@type": "Person",
+        name: "Utsho Das",
+      },
+      {
+        "@type": "Person",
+        name: "Md Sadek Ferdous",
+      },
+      {
+        "@type": "Person",
+        name: "Md Masum",
+      },
+      {
+        "@type": "Person",
+        name: "Farida Chowdhury",
+      },
+    ],
+    publisher: {
+      "@type": "Organization",
+      name: "USENIX Association",
+      url: "https://www.usenix.org",
+    },
+    educationalLevel: "University / General Public",
+    about: [
+      "Personal Cybersecurity Education",
+      "STRIDE Threat Model",
+      "Smart Home IoT Security",
+      "Usable Privacy & Security",
+    ],
+    sameAs: [
+      "https://www.usenix.org/conference/soups2026/presentation/das",
+      "https://www.usenix.org/system/files/soups2026-das.pdf",
+    ],
+  };
+}
+
+export function cyquredSiteNavJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    name: [
+      "CyQured Overview",
+      "Game Assets & Cards",
+      "Rules & Mechanics",
+      "SOUPS 2026 Research Paper",
+      "Empirical Study & Evaluation",
+    ],
+    url: [
+      `${siteConfig.url}/cyqured/`,
+      `${siteConfig.url}/cyqured/assets/`,
+      `${siteConfig.url}/cyqured/mechanics/`,
+      `${siteConfig.url}/cyqured/publication/`,
+      `${siteConfig.url}/publications/cyqured/`,
+    ],
+  };
+}
+

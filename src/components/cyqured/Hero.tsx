@@ -78,7 +78,7 @@ function HeroLogoLockup() {
             and let the CSS width override the rendered size. */}
         <Image
           src="/media/publications/cyqured/cyqured-logo.webp"
-          alt="cyQured"
+          alt="CyQured"
           width={632}
           height={225}
           className={styles.logo}
