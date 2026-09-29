@@ -27,10 +27,11 @@ interface PulseWave {
 
 const PITCH = 44; // Diamond grid cell pitch in CSS pixels
 const ROW_HEIGHT = PITCH * (Math.sqrt(3) / 2); // ~38.1px for 60-degree isometric grid
-const MAGNETIC_RADIUS = 195; // Repulsion zone around cursor
-const REPULSION_FORCE = 15; // Peak repulsion acceleration
-const SPRING_K = 0.065; // Elastic return constant
-const DAMPING = 0.88; // Friction damping factor
+const MAGNETIC_RADIUS = 170; // Repulsion zone around cursor
+const REPULSION_FORCE = 7; // Peak repulsion acceleration
+const SPRING_K = 0.06; // Elastic return constant
+const DAMPING = 0.8; // Friction damping factor
+const LINE_BUCKETS = 6; // Alpha levels used to batch line strokes
 
 export function CyquredMagneticGrid() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -118,7 +119,7 @@ export function CyquredMagneticGrid() {
       ctx.clearRect(0, 0, w, h);
 
       // 1. Defined 60-degree and -60-degree lines
-      ctx.strokeStyle = "rgba(94, 225, 242, 0.26)";
+      ctx.strokeStyle = "rgba(94, 225, 242, 0.09)";
       ctx.lineWidth = 1;
       ctx.beginPath();
 
@@ -165,7 +166,7 @@ export function CyquredMagneticGrid() {
       ctx.stroke();
 
       // 2. High-contrast light nodes at rest
-      ctx.fillStyle = "rgba(180, 235, 250, 0.42)";
+      ctx.fillStyle = "rgba(180, 235, 250, 0.14)";
       ctx.beginPath();
       for (let i = 0; i < nodes.length; i++) {
         const p = nodes[i];
@@ -174,7 +175,7 @@ export function CyquredMagneticGrid() {
       }
       ctx.fill();
 
-      ctx.fillStyle = "rgba(245, 252, 255, 0.82)";
+      ctx.fillStyle = "rgba(245, 252, 255, 0.35)";
       ctx.beginPath();
       for (let i = 0; i < nodes.length; i++) {
         const p = nodes[i];
@@ -221,8 +222,8 @@ export function CyquredMagneticGrid() {
         y: e.clientY,
         radius: 0,
         maxRadius: Math.min(window.innerWidth, window.innerHeight) * 0.35,
-        speed: 6.5,
-        strength: 14,
+        speed: 4.5,
+        strength: 5,
       });
       wake();
     }
@@ -314,47 +315,44 @@ export function CyquredMagneticGrid() {
         }
       }
 
-      // 3. Render 60-degree and -60-degree Diamond Grid Lines
-      for (let r = 0; r < rows; r++) {
+      // 3. Render diamond grid lines, batched into a few alpha buckets so we
+      // issue ~LINE_BUCKETS strokes per frame instead of one per segment.
+      const buckets: Path2D[] = [];
+      for (let b = 0; b < LINE_BUCKETS; b++) buckets.push(new Path2D());
+
+      const addLine = (p: GridNode, target: GridNode | undefined) => {
+        if (!target) return;
+        const maxDisp = Math.max(p.disp, target.disp);
+        const t = maxDisp > 0.8 ? Math.min(1, maxDisp / 14) : 0;
+        const path = buckets[Math.round(t * (LINE_BUCKETS - 1))];
+        path.moveTo(p.x, p.y);
+        path.lineTo(target.x, target.y);
+      };
+
+      for (let r = 0; r < rows - 1; r++) {
         for (let c = 0; c < cols; c++) {
           const idx = r * cols + c;
           const p = nodes[idx];
-
-          if (r < rows - 1) {
-            const connectLines = (target: GridNode | undefined) => {
-              if (!target) return;
-              const maxDisp = Math.max(p.disp, target.disp);
-              let alpha = 0.26;
-              let lineW = 1;
-
-              if (maxDisp > 0.8) {
-                const t = Math.min(1, maxDisp / 14);
-                alpha = 0.26 + t * 0.45;
-                lineW = 1 + t * 0.7;
-              }
-
-              ctx.lineWidth = lineW;
-              ctx.strokeStyle = `rgba(94, 225, 242, ${alpha.toFixed(3)})`;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(target.x, target.y);
-              ctx.stroke();
-            };
-
-            if (r % 2 === 0) {
-              connectLines(nodes[idx + cols]); // down-right
-              if (c > 0) connectLines(nodes[idx + cols - 1]); // down-left
-            } else {
-              connectLines(nodes[idx + cols]); // down-left
-              if (c < cols - 1) connectLines(nodes[idx + cols + 1]); // down-right
-            }
+          addLine(p, nodes[idx + cols]);
+          if (r % 2 === 0) {
+            if (c > 0) addLine(p, nodes[idx + cols - 1]);
+          } else if (c < cols - 1) {
+            addLine(p, nodes[idx + cols + 1]);
           }
         }
       }
 
+      for (let b = 0; b < LINE_BUCKETS; b++) {
+        const t = b / (LINE_BUCKETS - 1);
+        ctx.lineWidth = 1 + t * 0.3;
+        ctx.strokeStyle = `rgba(94, 225, 242, ${(0.09 + t * 0.22).toFixed(3)})`;
+        ctx.stroke(buckets[b]);
+      }
+
+
       // 4. Render All Vertices (High-Contrast Light Cyber Nodes)
       // 4a. Batch resting outer halos
-      ctx.fillStyle = "rgba(180, 235, 250, 0.42)";
+      ctx.fillStyle = "rgba(180, 235, 250, 0.14)";
       ctx.beginPath();
       for (let i = 0; i < nodes.length; i++) {
         const p = nodes[i];
@@ -366,7 +364,7 @@ export function CyquredMagneticGrid() {
       ctx.fill();
 
       // 4b. Batch resting inner bright light cores
-      ctx.fillStyle = "rgba(245, 252, 255, 0.82)";
+      ctx.fillStyle = "rgba(245, 252, 255, 0.35)";
       ctx.beginPath();
       for (let i = 0; i < nodes.length; i++) {
         const p = nodes[i];
@@ -382,17 +380,17 @@ export function CyquredMagneticGrid() {
         const p = nodes[i];
         if (p.disp > 0.8) {
           const t = Math.min(1, p.disp / 16);
-          const outerR = 1.75 + t * 1.5;
-          const innerR = 1.05 + t * 0.85;
+          const outerR = 1.75 + t * 0.9;
+          const innerR = 1.05 + t * 0.5;
 
           // Radiant cyber aura
-          ctx.fillStyle = `rgba(94, 225, 242, ${(0.45 + t * 0.45).toFixed(3)})`;
+          ctx.fillStyle = `rgba(94, 225, 242, ${(0.2 + t * 0.3).toFixed(3)})`;
           ctx.beginPath();
           ctx.arc(p.x, p.y, outerR, 0, Math.PI * 2);
           ctx.fill();
 
           // High contrast pure light center
-          ctx.fillStyle = `rgba(255, 255, 255, ${(0.85 + t * 0.15).toFixed(3)})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${(0.5 + t * 0.3).toFixed(3)})`;
           ctx.beginPath();
           ctx.arc(p.x, p.y, innerR, 0, Math.PI * 2);
           ctx.fill();

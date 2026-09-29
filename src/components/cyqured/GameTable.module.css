@@ -4,6 +4,8 @@
   display: block;
   max-width: 680px;
   margin: 0 auto;
+  /* Own compositing layer so the board image isn't repainted with the glows */
+  transform: translateZ(0);
 }
 
 .trackLines line {
@@ -19,10 +21,10 @@
 @keyframes cellGlow {
   0%,
   100% {
-    filter: drop-shadow(0 0 2px rgba(234, 247, 251, 0.4));
+    opacity: 0.55;
   }
   50% {
-    filter: drop-shadow(0 0 8px rgba(234, 247, 251, 0.9));
+    opacity: 1;
   }
 }
 
@@ -33,7 +35,6 @@
 /* Tokens slide smoothly to their new cell instead of snapping instantly. */
 .token {
   transition: cx 0.65s cubic-bezier(0.3, 0.8, 0.3, 1), cy 0.65s cubic-bezier(0.3, 0.8, 0.3, 1), r 0.3s ease;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
 }
 
 .tokenActive {
@@ -43,10 +44,10 @@
 @keyframes tokenGlow {
   0%,
   100% {
-    filter: drop-shadow(0 0 3px rgba(234, 247, 251, 0.75)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+    opacity: 0.8;
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(234, 247, 251, 1)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+    opacity: 1;
   }
 }
 
@@ -78,11 +79,9 @@
   0%,
   100% {
     opacity: 0.5;
-    r: 38;
   }
   50% {
     opacity: 1;
-    r: 43;
   }
 }
 

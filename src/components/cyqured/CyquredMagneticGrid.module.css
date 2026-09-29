@@ -24,7 +24,7 @@
   transition: opacity var(--duration-base) var(--ease-out);
   background: radial-gradient(
     480px circle at var(--mx, 50%) var(--my, 33%),
-    rgba(94, 225, 242, 0.12),
+    rgba(94, 225, 242, 0.06),
     transparent 70%
   );
 }
