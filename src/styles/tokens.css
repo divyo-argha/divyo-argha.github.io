@@ -9,12 +9,12 @@
 
 :root {
   /* ---- Light palette (default) ---- */
-  --ground: #f4f5f3;
+  --ground: #ffffff;
   --surface: #ffffff;
-  --raised: #fafbfa;
+  --raised: #fbfcfb;
   --ink: #111413;
   --muted: #5b615e;
-  --line: #dfe2dd;
+  --line: #e5e7eb;
   --accent: #0f5c4a;
   --accent-ink: #ffffff;
   --accent-soft: #e1ede8;

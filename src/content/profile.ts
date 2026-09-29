@@ -2,19 +2,20 @@ import type { Link, NewsItem } from "./types";
 
 export const profile = {
   name: "Argha Pratim Saha",
-  subtitle: "Researcher in Human-Centered Security & Privacy",
+  subtitle: "Research Assistant @ BRAC University",
   focusLine: "Usable security & privacy · Human-computer interaction · AI & IoT Security",
   status: "PhD applicant · Fall 2027",
   bioParagraphs: [
-    "I'm a Computer Science graduate from Shahjalal University of Science and Technology, Bangladesh. I'm interested in usable security and privacy, specifically why people misunderstand the tools meant to protect them, and how that plays out for people sharing devices, working through confusing interfaces, or facing scams with no one to ask.",
-    "My recent work includes CyQured, a tabletop game I built and tested for teaching personal cybersecurity, and an ongoing study with BRAC University's Human-Centered Computing and Society group on how young adults in Bangladesh read phishing and smishing attempts. I'm currently a software engineer at ShellBeeHaken, building the Bengali-English code-switching layer for a real-time voice agent, and I have a background in applied machine learning that includes clinical NLP and diagnostic imaging.",
+    "Hi, I'm Argha, pronounced as Or + gho [think as \"ghost\" without the \"st\" :) ].",
+    "I am a part-time Research Assistant at BRAC University, where I am advised by Dr. Farida Chowdhury. I graduated from Shahjalal University of Science and Technology (SUST) in July 2025, where my undergraduate thesis focused on HCI, more specifically, usable security education, under the supervision of Dr. Farida Chowdhury, Dr. Md Sadek Ferdous, and Md Masum.",
+    "I'm interested in Usable Security & Privacy and Human-Computer Interaction, where I want to understand the human factors behind security and privacy decisions, and how context and circumstances shape their security behavior. I'm also interested in designing more effective and engaging interventions for users who may be more vulnerable to security and privacy risks, and in exploring security problems from both human-centered and technical perspectives.",
+    "I’m currently looking for PhD opportunities for Fall 2027.",
   ],
-  closingStatement:
-    "What pulls me toward a PhD is a simple question: most security failures aren't really about carelessness, they're about systems built for a user who doesn't actually exist. I want to spend the next few years figuring out what it would take to close that gap.",
-  bio: "I'm a Computer Science graduate interested in usable security and privacy, specifically why people misunderstand the tools meant to protect them. I build things people can use, including a tabletop security game and studies of phishing perception, and test them with real users.",
+  closingStatement: "",
+  bio: "Hi, I'm Argha, pronounced as Or + gho [think as \"ghost\" without the \"st\" :) ]. I am a part-time Research Assistant at BRAC University advised by Dr. Farida Chowdhury. I graduated from SUST in July 2025 and focus on Usable Security & Privacy and Human-Computer Interaction, exploring security problems from both human-centered and technical perspectives. Currently looking for PhD opportunities for Fall 2027.",
   location: "Dhaka, Bangladesh",
   email: "arghapratimsaha00@gmail.com",
-  university: "Shahjalal University of Science and Technology (SUST)",
+  university: "BRAC University",
   cvUrl: "/cv.pdf",
 } as const;
 

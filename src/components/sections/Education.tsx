@@ -2,14 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Section } from "@/components/primitives/Section";
 import { Reveal } from "@/components/primitives/Reveal";
-import { Chip } from "@/components/primitives/Chip";
 import { AccordionRow } from "@/components/primitives/AccordionRow";
 import { IconArrowUpRight } from "@/components/primitives/Icons";
 import { education } from "@/content/education";
 import styles from "./Education.module.css";
 
 export function Education() {
-  const { university, secondary } = education;
+  const { university } = education;
 
   return (
     <Section id="education" label="Education" title="Degrees, thesis & academic record.">
@@ -59,28 +58,6 @@ export function Education() {
               <span className={styles.thesisMetaLabel}>Supervisors</span>
               <span>{university.thesis.supervisors.join(", ")}</span>
             </p>
-          </AccordionRow>
-        </Reveal>
-
-        <Reveal delay={1}>
-          <AccordionRow
-            icon={<Image src={secondary.logo.src} alt="" width={56} height={56} className={styles.logo} />}
-            title={secondary.institution}
-            subtitle={secondary.location}
-            meta={<Chip>Secondary education</Chip>}
-          >
-            <div className={styles.examGrid}>
-              {secondary.exams.map((exam) => (
-                <div key={exam.abbr} className={styles.exam}>
-                  <span className={styles.examStage}>
-                    {exam.stage} <span className={styles.examAbbr}>({exam.abbr})</span>
-                  </span>
-                  <span className={styles.examResult}>
-                    {exam.group} · {exam.result}
-                  </span>
-                </div>
-              ))}
-            </div>
           </AccordionRow>
         </Reveal>
       </div>
